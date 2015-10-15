@@ -3,6 +3,8 @@ require 'json'
 require 'open-uri'
 require 'time'
 
+require 'watcher'
+
 def check_and_alert user
   github_url = "https://api.github.com/users/#{user}/events/public"
   puts "Checking if #{user} has pushed code for the day."
@@ -39,6 +41,7 @@ users = ['avinoth', 'hindupuravinash']
 users.each do |user|
   puts "Checking commits of #{user}"
   # check_commit user
+  check_commit user
   if Time.now.hour > 22
     check_and_alert user
   end
